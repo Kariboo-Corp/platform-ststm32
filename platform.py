@@ -17,6 +17,7 @@ import sys
 import subprocess
 
 from platformio.managers.platform import PlatformBase
+from platformio.project.helpers import get_project_dir
 
 
 IS_WINDOWS = sys.platform.startswith("win")
@@ -33,7 +34,7 @@ class Ststm32Platform(PlatformBase):
 
         frameworks = variables.get("pioframework", [])
         if "arduino" in frameworks:
-            if board.startswith(("portenta", "opta", "nicla_vision")):
+            if board.startswith(("portenta", "opta", "nicla_vision", "giga")):
                 self.frameworks["arduino"]["package"] = "framework-arduino-mbed"
                 self.frameworks["arduino"][
                     "script"
@@ -49,7 +50,7 @@ class Ststm32Platform(PlatformBase):
                 self.packages["framework-arduinoststm32"]["optional"] = True
             else:
                 self.packages["toolchain-gccarmnoneeabi"]["version"] = "~1.120301.0"
-                self.packages["framework-cmsis"]["version"] = "~2.50700.0"
+                self.packages["framework-cmsis"]["version"] = "~2.50900.0"
                 self.packages["framework-cmsis"]["optional"] = False
 
         if "mbed" in frameworks:
@@ -72,7 +73,7 @@ class Ststm32Platform(PlatformBase):
         default_protocol = board_config.get("upload.protocol") or ""
         if variables.get("upload_protocol", default_protocol) == "dfu":
             dfu_package = "tool-dfuutil"
-            if board.startswith(("portenta", "opta", "nicla")):
+            if board.startswith(("portenta", "opta", "nicla", "giga")):
                 dfu_package = "tool-dfuutil-arduino"
                 self.packages.pop("tool-dfuutil")
             else:
@@ -116,16 +117,26 @@ class Ststm32Platform(PlatformBase):
         if name != "framework-zephyr":
             return pkg
 
-        if not os.path.isfile(os.path.join(pkg.path, "_pio", "state.json")):
-            self.pm.log.info("Installing Zephyr project dependencies...")
-            try:
-                subprocess.run([
-                    os.path.normpath(sys.executable),
-                    os.path.join(pkg.path, "scripts", "platformio", "install-deps.py"),
-                    "--platform", self.name
-                ])
-            except subprocess.CalledProcessError:
-                self.pm.log.info("Failed to install Zephyr dependencies!")
+        prj_west_manifest = os.path.join(get_project_dir(), "west.yml")
+        try:
+            (
+                subprocess.run(
+                    [
+                        os.path.normpath(sys.executable),
+                        os.path.join(
+                            pkg.path, "scripts", "platformio", "install-deps.py"
+                        ),
+                        "--platform",
+                        self.name,
+                    ] + (
+                        ["--manifest", prj_west_manifest]
+                        if os.path.isfile(prj_west_manifest)
+                        else []
+                    )
+                )
+            )
+        except subprocess.CalledProcessError:
+            self.pm.log.info("Failed to install Zephyr dependencies!")
 
         return pkg
 
