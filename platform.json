@@ -18,7 +18,7 @@
     "type": "git",
     "url": "https://github.com/platformio/platform-ststm32.git"
   },
-  "version": "19.1.0",
+  "version": "19.5.0",
   "frameworks": {
     "mbed": {
       "package": "framework-mbed",
@@ -93,86 +93,92 @@
       "owner": "platformio",
       "version": "~2.50501.0",
       "optionalVersions": [
-        "~2.50900.0"
+        "~2.60300.0"
       ]
+    },
+    "framework-cmsis-dsp": {
+      "type": "framework",
+      "optional": true,
+      "owner": "platformio",
+      "version": "~1.16.2"
     },
     "framework-cmsis-stm32f0": {
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~2.3.4"
+      "version": "~2.3.7"
     },
     "framework-cmsis-stm32f1": {
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~4.3.1"
+      "version": "~4.3.5"
     },
     "framework-cmsis-stm32f2": {
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~2.2.3"
+      "version": "~2.2.6"
     },
     "framework-cmsis-stm32f3": {
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~2.3.4"
+      "version": "~2.3.8"
     },
     "framework-cmsis-stm32f4": {
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~2.6.4"
+      "version": "~2.6.11"
     },
     "framework-cmsis-stm32f7": {
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~1.2.5"
+      "version": "~1.2.10"
     },
     "framework-cmsis-stm32g0": {
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~1.3.0"
+      "version": "~1.4.4"
     },
     "framework-cmsis-stm32g4": {
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~1.1.1"
+      "version": "~1.2.5"
     },
     "framework-cmsis-stm32h7": {
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~1.8.0"
+      "version": "~1.10.6"
     },
     "framework-cmsis-stm32l0": {
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~1.9.0"
+      "version": "~1.9.4"
     },
     "framework-cmsis-stm32l1": {
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~2.3.0"
+      "version": "~2.3.4"
     },
     "framework-cmsis-stm32l4": {
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~1.6.1"
+      "version": "~1.7.4"
     },
     "framework-cmsis-stm32l5": {
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~1.0.2"
+      "version": "~1.0.6"
     },
     "framework-spl": {
       "type": "framework",
@@ -190,7 +196,7 @@
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~4.21001.0"
+      "version": "~4.21200.0"
     },
     "framework-arduinoststm32-maple": {
       "type": "framework",
@@ -214,7 +220,7 @@
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~4.2.4"
+      "version": "~4.5.0"
     },
     "framework-stm32cubef0": {
       "type": "framework",
@@ -298,13 +304,19 @@
       "type": "framework",
       "optional": true,
       "owner": "platformio",
-      "version": "~3.40100.0"
+      "version": "~3.40300.0"
     },
     "tool-stm32flash": {
       "type": "uploader",
       "optional": true,
       "owner": "platformio",
       "version": "~0.7.0"
+    },
+    "tool-stm32duino": {
+      "type": "uploader",
+      "optional": true,
+      "owner": "platformio",
+      "version": "~1.0.1"
     },
     "tool-openocd": {
       "type": "uploader",
@@ -316,7 +328,7 @@
       "type": "uploader",
       "optional": true,
       "owner": "platformio",
-      "version": "^1.63208.0"
+      "version": "^1.92000.0"
     },
     "tool-dfuutil": {
       "type": "uploader",
